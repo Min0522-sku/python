@@ -10,7 +10,9 @@ df_customer = pd.DataFrame(data_json['customer_data'])
 print(df_customer.head())
 
 # 데이터 분석/시각화
-# 성별과 연령대로 그룹화
+# 성별 과 연령대 로 그룹화 , df.groupby( [ '그룹기준' , '그룹기준' ] )
+# 다수통계 df.agg( { '열이름' : '함수명' } )
+# 여러개 그룹화할 경우에는 .reset_index() 함수 이용하여 *행번호* 붙인다.
 newDf = df_customer.groupby(['성별', '연령대']).agg({'고객 수':'sum', '평균 구매 금액':'mean'}).reset_index()
 print(newDf)
 print(newDf['연령대']) # 남성 여성 포함하여 연령대
@@ -52,3 +54,4 @@ plt.title('연령대별 평균 구매 금액')
 plt.legend()
 plt.show()
 
+# 차트확인 : 40대가 가장 구매력이 큰 집단임을 시사, 10대가 가장 적은 구매력을 가진다.
